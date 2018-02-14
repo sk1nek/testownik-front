@@ -1,0 +1,10 @@
+body {
+    background: #212529;
+    padding-top: 120px;
+}
+
+.jumbotron {
+    background: #343a40;
+    color: white;
+    border-radius: 0px;
+}
