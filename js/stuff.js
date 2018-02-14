@@ -66,7 +66,7 @@ function loadQuestion(test , number){
             .append($('<div>')
                 .append($('<div class=\"answer\">')
                     .attr('onclick', parseAnswerOnclick(value.correct))
-                .append(parseContent(value.text))));
+                .append(parseContent(value.text, false))));
 
     });
 
@@ -130,15 +130,41 @@ function parseAnswerOnclick(correct){
 function parseHeader(number, header) {
 
     var a = '<b>' + number + '. </b>';
-    var b = parseContent(header);
+    var b = parseContent(header, true);
 
     return a + b;
 }
 
-function parseContent(e) {
-    if(e.includes('http')){
-        return '<img src=\"' + e + '\">';
+function parseContent(e, addModal) {
+    if(e.includes('http') && addModal === true){
+        return "<a onclick=\"showmodal('"+ e +"')\" href=\"#\"><img src=\"" + e + "\"></a>";
+    }else if(e.includes('http') && addModal === false){
+        return "<img src=\"" + e + "\">";
     }else{
         return e;
     }
+}
+
+function showmodal(e) {
+
+    var modal = $('#image-modal');
+
+    modal.append($('<div>')
+        .attr('class', 'modal-img-holder')
+            .append($('<img>')
+                .attr('src', e)
+            )
+        );
+
+    modal.show();
+
+}
+
+function disposeModal(){
+
+    var modal = $('#image-modal');
+
+    modal.empty();
+    modal.hide();
+
 }
