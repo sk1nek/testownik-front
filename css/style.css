@@ -1,6 +1,25 @@
 body {
     background: #212529;
-    padding-top: 120px;
+    padding-top: 30px;
+}
+
+footer {
+    color: gray;
+    position: absolute;
+    bottom: 10px;
+    margin: auto;
+    text-align: center;
+    display: block;
+    left: 40%;
+    right: 40%;
+}
+
+footer a {
+    color: darkgray;
+}
+
+img{
+    max-width: 100%;
 }
 
 .jumbotron {
@@ -13,20 +32,31 @@ body {
     border-bottom: 1px solid white;
 }
 
+#question-header {
+    background: white;
+    color: black;
+    border: 1px solid darkslategray;
+    padding: 15px 30px;
+}
+
 .answer{
     background: white;
     color: black;
     padding: 15px 30px;
-    border: 1px solid darkslategray;
-
+    border: 3px solid darkslategray;
 }
 
 .answer:hover{
-    border: 1px solid red;
+    border: 3px solid red;
 }
 
 .centering {
     left: 50%;
     right: 50%;
+}
+
+.statistics{
+    padding-left: 15px;
+    border-left: 1px solid dimgray;
 }
 

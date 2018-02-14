@@ -1,6 +1,7 @@
 
 var correctCounter = 0;
 var wrongCounter = 0;
+var questionsCounter = 0;
 
 var currentQuestion = 0;
 var test;
@@ -53,7 +54,7 @@ function loadQuestion(test , number){
 
     var header = $('#question-header');
 
-    $('.answer').remove();
+    $('.answers').empty();
     header.empty();
 
     var question = test.questions[number];
@@ -69,15 +70,30 @@ function loadQuestion(test , number){
 
     });
 
+    var progressPercentage = (questionsCounter / test.questions.length) * 100;
+
+    $('#test-progress').attr('style', 'width:'+ progressPercentage +'%');
+
+    var correctPercentage = ((questionsCounter - wrongCounter) / questionsCounter) * 100;
+
+    $('#correct-progress').attr('style', 'width:' + correctPercentage + '%');
+
+    $('#test-name').text('Test: '+ test.title);
+    $('#correct-answers').text('Poprawnych: ' + correctCounter);
+    $('#wrong-answers').text('Złych: ' + wrongCounter);
+
+
 
 }
 
 function answerCorrect() {
 
     currentQuestion++;
+    questionsCounter++;
+    correctCounter++;
 
-    if(currentQuestion === test.size) {
-        alert('Koniec');
+    if(currentQuestion === test.questions.length) {
+        handleEnd();
     }
 
     loadQuestion(test, currentQuestion);
@@ -86,7 +102,19 @@ function answerCorrect() {
 
 function answerWrong() {
 
+    currentQuestion++;
+    questionsCounter++;
     wrongCounter++;
+
+    if(currentQuestion === test.questions.length){
+        handleEnd();
+    }
+
+    loadQuestion(test, currentQuestion);
+}
+
+function handleEnd(){
+    alert("Koniec");
 }
 
 function parseAnswerOnclick(correct){
