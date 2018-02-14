@@ -6,5 +6,27 @@ body {
 .jumbotron {
     background: #343a40;
     color: white;
-    border-radius: 0px;
+    border-radius: 0;
 }
+
+.my-4 {
+    border-bottom: 1px solid white;
+}
+
+.answer{
+    background: white;
+    color: black;
+    padding: 15px 30px;
+    border: 1px solid darkslategray;
+
+}
+
+.answer:hover{
+    border: 1px solid red;
+}
+
+.centering {
+    left: 50%;
+    right: 50%;
+}
+

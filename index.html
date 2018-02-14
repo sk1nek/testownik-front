@@ -7,21 +7,61 @@
     <link rel="stylesheet" href="css/bootstrap-grid.css"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <script src="js/bootstrap.bundle.js"></script>
+    <script
+            src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
     <script src="js/bootstrap.js"></script>
+
     <script src="js/stuff.js"></script>
+
 </head>
 <body>
 <div class="container container-fluid">
-    <div class="jumbotron">
+    <div id="jumbo-start" class="jumbotron">
         <h1 class="display-4">Testownik lol</h1>
         <p class="lead">Uczę się bootstrapa, tutaj miało być jakieś lorem ipsum ale nawet na to byłem za leniwy :/</p>
         <hr class="my-4">
-        <p>A, fajnie by bylo zeby javascript był włączony. W przeciwnym razie może nie działać.</p>
+        <p>A, fajnie by bylo zeby javascript był włączony. W przeciwnym razie może nie działać. Ba, napewno nie zadziała.</p>
         <p class="lead">
             <a class="btn btn-secondary btn-lg btn-block" id="start-button" onclick="loadTestownikis()" role="button" href="#">Zaczynajmy</a>
         </p>
+
+        <table class="table table-hover table-striped table-dark" style="display:none" id="table">
+
+            <thead>
+            <th>
+                Nazwa
+            </th>
+            <th>
+                Opis
+            </th>
+            </thead>
+
+            <tbody>
+            </tbody>
+
+        </table>
+
     </div>
+
+    <div id="jumbo-test" class="jumbotron" style="display:none">
+
+        <div>
+            <div id="question-header">
+            </div>
+
+            <div class="my-4"></div>
+
+            <div class="answers">
+
+            </div>
+
+        </div>
+
+
+    </div>
+
 </div>
 </body>
 </html>
