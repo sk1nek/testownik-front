@@ -86,9 +86,23 @@
 
 </div>
 
-<div id="image-modal" style="display: none" onclick="disposeModal()">
+<div id="image-modal" style="display: none" onclick="disposeModal()"></div>
 
+<div class="modal fade" id="endModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-custom">
+            <div class="modal-header">
+                <h5 class="modal-title" id="endModalLabel">Koniec!</h5>
+            </div>
+            <div id="summary-text" class="modal-body">
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-secondary">Koniec</button>
+                <button type="button" data-dismiss="modal" onclick="reloadTest();" class="btn btn-secondary">Od nowa</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <footer>

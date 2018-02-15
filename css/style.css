@@ -95,3 +95,10 @@ img{
     height: 115%;
 
 }
+
+.modal-custom {
+    border-radius: 0;
+    color: white;
+    background: #212529;
+
+}

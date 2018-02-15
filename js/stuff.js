@@ -6,6 +6,8 @@ var questionsCounter = 0;
 var currentQuestion = 0;
 var test;
 
+var shouldReload = true;
+
 function loadTestownikis(){
 
     var startButton = $("#start-button");
@@ -13,8 +15,6 @@ function loadTestownikis(){
     startButton.hide();
 
     $.get('http://localhost:8080/api/tests/', function (response) {
-
-
 
         response.forEach(function (value) {
 
@@ -37,6 +37,11 @@ function loadTestownikis(){
 }
 
 function loadTest(v) {
+
+    correctCounter = 0;
+    wrongCounter = 0;
+    currentQuestion = 0;
+    questionsCounter = 0;
 
 
     $('#jumbo-start').hide();
@@ -114,7 +119,26 @@ function answerWrong() {
 }
 
 function handleEnd(){
-    alert("Koniec");
+
+    var modal = $('#endModal');
+
+    modal.modal();
+    summaryText();
+
+    modal.on('hidden.bs.modal', function(e){
+        if(shouldReload === true){
+            window.location.reload();
+        }
+    })
+}
+
+function summaryText(){
+
+    var summary = 'Brawo, udało Ci się skończyć test z wynikiem <b>' + Math.round(correctCounter / questionsCounter * 100) + '%</b>. Powodzenia na kolokium.';
+
+    var summaryDiv = $('#summary-text');
+    summaryDiv
+        .append(summary);
 }
 
 function parseAnswerOnclick(correct){
@@ -158,6 +182,8 @@ function showmodal(e) {
 
     modal.show();
 
+
+
 }
 
 function disposeModal(){
@@ -167,4 +193,9 @@ function disposeModal(){
     modal.empty();
     modal.hide();
 
+}
+
+function reloadTest() {
+    shouldReload = false;
+    loadTest(test.id);
 }
