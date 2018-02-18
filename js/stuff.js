@@ -35,12 +35,14 @@ function timer() {
 function loadTestownikis(){
 
 
+    var table = $('#table');
     var startButton = $("#start-button");
     var getSuccess = false;
     startButton.hide();
 
-    $.get('http://localhost:8080/api/tests/', function (response) {
+    table.find('tbody').empty();
 
+    $.get('http://localhost:8080/api/tests/', function (response) {
 
         response.forEach(function (value) {
 
@@ -48,7 +50,7 @@ function loadTestownikis(){
 
             var onclick = 'loadTest(\'' + value.id + '\')';
 
-            $('#table').find('tbody')
+            table.find('tbody')
                 .append($('<tr>')
                     .attr('onclick', onclick)
                     .append($('<td>')
@@ -61,15 +63,17 @@ function loadTestownikis(){
     });
 
     if(getSuccess === false){
-        $('#table').find('tbody')
+        table.find('tbody')
             .append($('<tr>')
+                .attr('style', 'background:#820000')
+                .attr('onclick', 'loadTestownikis()')
                 .append($('<td>')
-                    .text("Ups"))
+                    .text("Coś poszło nie tak"))
                 .append($('<td>')
-                    .text("Coś poszło nie tak?")));
+                    .text("Kliknij aby spróbować ponownie")));
     }
 
-    $('#table').show();
+    table.show();
 
 }
 
