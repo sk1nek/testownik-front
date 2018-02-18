@@ -65,7 +65,7 @@ function loadTestownikis(){
     if(getSuccess === false){
         table.find('tbody')
             .append($('<tr>')
-                .attr('style', 'background:#820000')
+                .attr('class', 'hoverable-error')
                 .attr('onclick', 'loadTestownikis()')
                 .append($('<td>')
                     .text("Coś poszło nie tak"))
