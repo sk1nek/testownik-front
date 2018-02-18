@@ -1,22 +1,50 @@
 
+//test variables
 var correctCounter = 0;
 var wrongCounter = 0;
 var questionsCounter = 0;
-
 var currentQuestion = 0;
 var test;
-
 var shouldReload = true;
+
+//timer variables
+var t;
+var seconds=0, minutes=0, hours =0;
+
+function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+
+    $('#timer').text('Obecna sesja: ' + (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds));
+
+
+    timer();
+}
+function timer() {
+    t = setTimeout(add, 1000);
+}
+
 
 function loadTestownikis(){
 
-    var startButton = $("#start-button");
 
+    var startButton = $("#start-button");
+    var getSuccess = false;
     startButton.hide();
 
     $.get('http://localhost:8080/api/tests/', function (response) {
 
+
         response.forEach(function (value) {
+
+            getSuccess = true;
 
             var onclick = 'loadTest(\'' + value.id + '\')';
 
@@ -26,23 +54,30 @@ function loadTestownikis(){
                     .append($('<td>')
                         .text(value.title))
                     .append($('<td>')
-                        .text(value.description)))
-            ;
-        });
+                        .text(value.description)));
 
-        $('#table').show();
+        });
 
     });
 
+    if(getSuccess === false){
+        $('#table').find('tbody')
+            .append($('<tr>')
+                .append($('<td>')
+                    .text("Ups"))
+                .append($('<td>')
+                    .text("Coś poszło nie tak?")));
+    }
+
+    $('#table').show();
+
 }
+
 
 function loadTest(v) {
 
-    correctCounter = 0;
-    wrongCounter = 0;
-    currentQuestion = 0;
-    questionsCounter = 0;
 
+    timer();
 
     $('#jumbo-start').hide();
     $('#jumbo-test').show();
@@ -196,6 +231,12 @@ function disposeModal(){
 }
 
 function reloadTest() {
+
+    correctCounter = 0;
+    wrongCounter = 0;
+    currentQuestion = 0;
+    questionsCounter = 0;
+
     shouldReload = false;
     loadTest(test.id);
 }
