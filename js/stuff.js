@@ -6,6 +6,7 @@ var questionsCounter = 0;
 var currentQuestion = 0;
 var test;
 var shouldReload = true;
+var selectionCorrect = 0;
 
 //timer variables
 var t;
@@ -97,6 +98,8 @@ function loadTest(v) {
 
 function loadQuestion(test , number){
 
+    selectionCorrect = 0;
+
     var header = $('#question-header');
 
     $('.answers').empty();
@@ -131,11 +134,8 @@ function loadQuestion(test , number){
 
 }
 
-function answerCorrect() {
-
+function proceed(){
     currentQuestion++;
-    questionsCounter++;
-    correctCounter++;
 
     if(currentQuestion === test.questions.length) {
         handleEnd();
@@ -145,18 +145,20 @@ function answerCorrect() {
 
 }
 
-function answerWrong() {
+function answerCorrect(src) {
 
-    currentQuestion++;
-    questionsCounter++;
-    wrongCounter++;
+    correctCounter++;
 
-    if(currentQuestion === test.questions.length){
-        handleEnd();
-    }
+    src.classList.add("selection");
 
-    loadQuestion(test, currentQuestion);
 }
+
+function answerWrong(src) {
+
+    src.classList.add("selection");
+
+}
+
 
 function handleEnd(){
 
@@ -188,9 +190,9 @@ function summaryText(){
 function parseAnswerOnclick(correct){
 
     if(correct === true){
-        return 'answerCorrect()';
+        return 'answerCorrect(this)';
     }else{
-        return 'answerWrong()';
+        return 'answerWrong(this)';
     }
 
 }
@@ -228,8 +230,6 @@ function showmodal(e) {
         );
 
     modal.show();
-
-
 
 }
 

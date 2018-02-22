@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="css/bootstrap-grid.css"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/style.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
     <script
             src="http://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -79,8 +83,21 @@
 
                 <p id="timer"></p>
 
-                <button type="button" onclick="location.reload()" class="btn btn-secondary">Zakończ</button>
-                <button type="button" onclick="reloadTest()" class="btn btn-secondary">Od nowa</button>
+
+
+                <div>
+                    <div class="btn-group d-flex"  role="group">
+                        <button type="button" onclick="location.reload()"  data-toggle="tooltip" data-placement="left" title="Koniec" class="w-100 btn btn-secondary "><i class="fa fa-ban fa-2x"></i></button>
+                        <button type="button" onclick="reloadTest()" class="w-100 btn btn-secondary ">Od nowa</button>
+                        <button type="button" data-toggle="tooltip" data-placement="right" title="Reset" onclick="deselectAll()"  class="w-100 btn btn-secondary "><i class="fa fa-repeat fa-2x"></i></button>
+                    </div>
+
+                    <div class="my-3"></div>
+
+                    <button type="button" onclick="proceed()"  class="btn btn-secondary btn-block">Następne pytanie</button>
+
+                </div>
+
 
             </div>
         </div>
