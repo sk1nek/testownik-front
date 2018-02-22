@@ -7,6 +7,7 @@ var currentQuestion = 0;
 var test;
 var shouldReload = true;
 var selectionCorrect = 0;
+var currentCorrectCount = 0;
 
 //timer variables
 var t;
@@ -99,6 +100,7 @@ function loadTest(v) {
 function loadQuestion(test , number){
 
     selectionCorrect = 0;
+    currentCorrectCount = 0;
 
     var header = $('#question-header');
 
@@ -109,13 +111,16 @@ function loadQuestion(test , number){
 
     header.append(parseHeader(question.questionNumber, question.header));
 
-    question.answers.forEach(function (value) {
+    question.answers.forEach(function (answer) {
         $('.answers')
             .append($('<div>')
                 .append($('<div class=\"answer\">')
-                    .attr('onclick', parseAnswerOnclick(value.correct))
-                .append(parseContent(value.text, false))));
+                    .attr('onclick', parseAnswerOnclick(answer.correct))
+                .append(parseContent(answer.text, false))));
 
+        if(answer.correct === true){
+            currentCorrectCount++;
+        }
     });
 
     var progressPercentage = (questionsCounter / test.questions.length) * 100;
@@ -135,6 +140,15 @@ function loadQuestion(test , number){
 }
 
 function proceed(){
+
+    if(currentCorrectCount === selectionCorrect){
+        correctCounter++;
+    }else{
+        wrongCounter++;
+    }
+
+    questionsCounter++;
+
     currentQuestion++;
 
     if(currentQuestion === test.questions.length) {
@@ -147,7 +161,7 @@ function proceed(){
 
 function answerCorrect(src) {
 
-    correctCounter++;
+    selectionCorrect++;
 
     src.classList.add("selection");
 
