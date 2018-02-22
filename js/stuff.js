@@ -176,6 +176,7 @@ function summaryText(){
     var summary = 'Brawo, udało Ci się skończyć test z wynikiem <b>' + Math.round(correctCounter / questionsCounter * 100) + '%</b>. Powodzenia na kolokium.';
 
     var summaryDiv = $('#summary-text');
+    summaryDiv.empty();
     summaryDiv
         .append(summary);
 }
