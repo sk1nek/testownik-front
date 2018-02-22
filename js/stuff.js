@@ -162,6 +162,9 @@ function handleEnd(){
 
     var modal = $('#endModal');
 
+    $('#test-progress').attr('style', 'width:'+ 100 +'%');
+
+
     modal.modal();
     summaryText();
 
