@@ -60,18 +60,19 @@ function loadTestownikis(){
 
         });
 
+        if(getSuccess === false){
+            table.find('tbody')
+                .append($('<tr>')
+                    .attr('class', 'hoverable-error')
+                    .attr('onclick', 'loadTestownikis()')
+                    .append($('<td>')
+                        .text("Coś poszło nie tak"))
+                    .append($('<td>')
+                        .text("Kliknij aby spróbować ponownie")));
+        }
+
     });
 
-    if(getSuccess === false){
-        table.find('tbody')
-            .append($('<tr>')
-                .attr('class', 'hoverable-error')
-                .attr('onclick', 'loadTestownikis()')
-                .append($('<td>')
-                    .text("Coś poszło nie tak"))
-                .append($('<td>')
-                    .text("Kliknij aby spróbować ponownie")));
-    }
 
     table.show();
 
@@ -195,6 +196,9 @@ function parseHeader(number, header) {
 
     var a = '<b>' + number + '. </b>';
     var b = parseContent(header, true);
+
+    if(number == undefined)
+        return b;
 
     return a + b;
 }
