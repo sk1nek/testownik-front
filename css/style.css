@@ -55,6 +55,10 @@ img{
     border: 4px solid crimson;
 }
 
+.correct{
+    border: #34ce57 4px solid;
+}
+
 .centering {
     left: 50%;
     right: 50%;

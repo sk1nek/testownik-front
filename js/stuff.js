@@ -8,6 +8,7 @@ var test;
 var shouldReload = true;
 var selectionCorrect = 0;
 var currentCorrectCount = 0;
+var correctArray = [];
 
 //timer variables
 var t;
@@ -101,6 +102,7 @@ function loadQuestion(test , number){
 
     selectionCorrect = 0;
     currentCorrectCount = 0;
+    correctArray=[];
 
     var header = $('#question-header');
 
@@ -117,6 +119,8 @@ function loadQuestion(test , number){
                 .append($('<div class=\"answer\">')
                     .attr('onclick', parseAnswerOnclick(answer.correct))
                 .append(parseContent(answer.text, false))));
+
+        correctArray.push(answer.correct);
 
         if(answer.correct === true){
             currentCorrectCount++;
@@ -173,6 +177,16 @@ function answerWrong(src) {
 
 }
 
+function markCorrect() {
+
+    $('.answer').each(function (i, obj) {
+
+        if(correctArray[i] === true){
+            obj.style.boxShadow = 'inset 0px 0px 0px 7px green';
+        }
+    })
+
+}
 
 function handleEnd(){
 
