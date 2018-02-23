@@ -165,15 +165,24 @@ function proceed(){
 
 function answerCorrect(src) {
 
-    selectionCorrect++;
 
-    src.classList.add("selection");
+    if(src.classList.contains("selection")){
+        selectionCorrect--;
+        src.classList.remove("selection");
+    }else{
+        src.classList.add("selection");
+        selectionCorrect++;
+    }
 
 }
 
 function answerWrong(src) {
 
-    src.classList.add("selection");
+    if(src.classList.contains("selection")){
+        src.classList.remove("selection");
+    }else{
+        src.classList.add("selection");
+    }
 
 }
 
