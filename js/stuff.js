@@ -188,6 +188,14 @@ function markCorrect() {
 
 }
 
+function deselectAll(){
+
+    selectionCorrect = 0;
+    $('.answer').each(function (i, obj) {
+        obj.className = 'answer';
+    });
+}
+
 function handleEnd(){
 
     var modal = $('#endModal');
